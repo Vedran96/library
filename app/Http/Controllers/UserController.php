@@ -17,8 +17,7 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /** 
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,7 +35,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $users=User::findOrFail($id);
-        dd($users);
+        return view('users.show', compact('user'));
     }
 
     /**

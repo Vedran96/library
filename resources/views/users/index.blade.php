@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="{{ route ('users.create') }}" class="btn btn-primary mt-5">Add</a>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,7 +11,7 @@
       <th scope="col">phone_number</th>
       <th scope="col">username</th>
       <th scope="col">password</th>
-
+      <th>Actions</th>
       
     
     </tr>
@@ -24,6 +25,10 @@
   <td>{{ $user->phone_number}}</td>
   <td>{{ $user->username}}</td>
   <td>{{ $user->password}}</td>
+  <td>
+  <a class="btn btn-outline-primary" href="{{ route('users.show', ['user' => $user->id]) }}">Details</a>
+  <a class="btn btn-outline-primary" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
+  </td>
   </tr>
 @endforeach
   </tbody>

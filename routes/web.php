@@ -24,7 +24,7 @@ use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('books', BookController::class);

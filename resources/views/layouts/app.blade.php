@@ -20,25 +20,25 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
     <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/users">Users</a>
+        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/books">Books </a>
+        <a class="nav-link" href="{{ route('books.index') }}">Books </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/lends">Lends </a>
+        <a class="nav-link" href="{{ route('lends.index') }}">Lends </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/reviews">Reviews </a>
+        <a class="nav-link" href="{{ route('reviews.index') }}">Reviews </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/authors">Authors </a>
+        <a class="nav-link" href="{{ route('authors.index') }}">Authors </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/roles">Roles </a>
+        <a class="nav-link" href="{{ route('roles.index') }}">Roles </a>
       </li>
       
       </li>

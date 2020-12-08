@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table table-striped">
+<a href="{{ route ('lends.create') }}" class="btn btn-primary mt-5">Add</a>
+<table class="table table-striped mt-3">
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">date_from</th>
       <th scope="col">date_to</th>
+      <th>Actions</th>
     
     </tr>
   </thead>
@@ -16,6 +18,10 @@
   <td>{{ $lend->id}}</td>
   <td>{{ $lend->date_from}}</td>
   <td>{{ $lend->date_to}}</td>
+  <td>
+  <a class="btn btn-outline-primary" href="{{ route('lends.show', ['lend' => $lend->id]) }}">Details</a>
+  <a class="btn btn-outline-primary" href="{{ route('lends.edit', ['lend' => $lend->id]) }}">Edit</a>
+  </td>
   </tr>
 @endforeach
   </tbody>

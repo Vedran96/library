@@ -47,7 +47,7 @@ class LendController extends Controller
     public function show($id)
     {
         $lend=Lend::findOrFail($id);
-        dd($lend);
+        return view('lends.show', compact('lend'));
     }
 
     /**
