@@ -9,7 +9,8 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ReviewController;
 
 
-
+/* ovo su rute gdje korisnik MORA biti prijavljen da bi im pristupio */
+Route::middleware(['auth'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,7 @@ Route::resource('books', BookController::class);
 Route::resource('authors', AuthorController::class);
 Route::resource('lends', LendController::class);
 Route::resource('reviews', ReviewController::class);
+});
 
-
+/* ovdje su rute za login, registraciju, change password, itd. */
+require __DIR__.'/auth.php';

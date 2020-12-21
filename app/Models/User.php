@@ -18,8 +18,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'address',
+        'phone_number',
+        'username',
         'password',
+        'role_id'
+
     ];
 
     /**
@@ -31,6 +35,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+public function role() {return $this->belongsTo(Role::class);}
+
 
     /**
      * The attributes that should be cast to native types.
@@ -38,6 +44,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'username_verified_at' => 'datetime',
     ];
+    public function review()
+    {
+        return $this->belongsToMany(User::class, 'reviews','user_id','book_id');
+    }
+     /* authorization */
+     public function isAdmin() { return $this->role_id === RoleEnum::ADMIN; } // RoleEnum::ADMIN je 1
+     public function isUser() { return $this->role_id === RoleEnum::USER; } // RoleEnum::USER je 2
+     public function isGuest() { return $this->role_id === RoleEnum::GUEST; } // RoleEnum::GUEST je 3
+ 
 }

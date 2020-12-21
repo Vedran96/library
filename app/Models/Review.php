@@ -14,4 +14,7 @@ class Review extends Model
         'user_rating'
         
     ];
+    public function users() {return $this->hasMany(User::class);}
+    public function books() {return $this->hasMany(Book::class);}
+
 }

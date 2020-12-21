@@ -14,4 +14,6 @@ class Lend extends Model
         'date_to'
         
     ];
+    public function users() {return $this->hasMany(User::class);}
+    public function books() {return $this->hasMany(Book::class);}
 }

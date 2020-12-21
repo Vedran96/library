@@ -24,7 +24,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -35,8 +35,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|unique:books|max:50',
+            'description' => 'required|unique:books|max:50',
+            'date_publication' => 'required|unique:books|max:10',
+
+        ]);
+        $book = Book::create($validated);
+        return view('books.show', compact('book'));
     }
+    
 
     /**
      * Display the specified resource.
@@ -58,7 +66,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -70,7 +79,17 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|unique:books|max:50',
+            'description' => 'required|unique:books|max:50',
+            'date_publication' => 'required|unique:books|max:10',
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->fill($validated);
+        $book->save();
+
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -81,6 +100,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::destroy($id);
+        return redirect()->route('books.index');
     }
 }

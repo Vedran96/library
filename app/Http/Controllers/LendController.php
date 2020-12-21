@@ -13,7 +13,7 @@ class LendController extends Controller
      */
     public function index()
     {
-        $lends=Lend::paginate();
+        $lends=Lend::with(['book','user'])->paginate();
         return view('lends.index', compact('lends'));
     }   
 
@@ -24,7 +24,7 @@ class LendController extends Controller
      */
     public function create()
     {
-        //
+        return view('lends.create');
     }
 
     /**
@@ -35,7 +35,13 @@ class LendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'date_from' => 'required|unique:lends|max:10',
+            'date_to' => 'required|unique:lends|max:10',
+            
+        ]);
+        $lend = Lend::create($validated);
+        return view('lends.show', compact('lends'));
     }
 
     /**
@@ -46,7 +52,7 @@ class LendController extends Controller
      */
     public function show($id)
     {
-        $lend=Lend::findOrFail($id);
+        $lends=Lend::with(['book','user'])->findOrFail($id);
         return view('lends.show', compact('lend'));
     }
 
@@ -58,7 +64,13 @@ class LendController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $books = Book::pluck('title','description','date_publication' ,'id');
+        $users = User::pluck('name','address','phone_number','username','id');
+        $lend = Lend::findOrFail($id);
+        return view('lends.edit',
+            compact('books', 'users', 'lend')
+        );
     }
 
     /**
@@ -70,7 +82,19 @@ class LendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'book_id' => 'required',
+            'user_id' => 'required',
+            'user_comment' => 'required|unique:lends|max:10',
+            'user_rating' => 'required|unique:lends|max:10'
+            
+        ]);
+
+        $lend = Lend::findOrFail($id);
+        $lend->fill($validated);
+        $lend->save();
+
+        return view('lends.show', compact('lend'));
     }
 
     /**
@@ -81,6 +105,7 @@ class LendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Lend::destroy($id);
+        return redirect()->route('lends.index');
     }
 }

@@ -23,11 +23,15 @@
   <td>{{ $user->name}}</td>
   <td>{{ $user->address}}</td>
   <td>{{ $user->phone_number}}</td>
+  <td>{{ $user->role->role_name}}</td>
   <td>{{ $user->username}}</td>
   <td>{{ $user->password}}</td>
+  
   <td>
   <a class="btn btn-outline-primary" href="{{ route('users.show', ['user' => $user->id]) }}">Details</a>
   <a class="btn btn-outline-primary" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
+  <a class="btn btn-outline-primary" href="{{ route('change_password.edit', ['user' => $user->id]) }}">Change password</a>
+  
   </td>
   </tr>
 @endforeach

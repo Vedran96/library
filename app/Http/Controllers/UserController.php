@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        $users=User::with(['role'])->paginate();
         return view('users.index', compact('users'));
     }
 
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -34,7 +34,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $users=User::findOrFail($id);
+        $validated = $request->validate([
+            'role_name' => 'required|unique:users|max:50',
+            
+        ]);
+        $user = User::create($validated);
         return view('users.show', compact('user'));
     }
 
@@ -46,7 +50,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $users=User::with(['role'])->findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -57,7 +62,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('role_name', 'id');
+        return view('users.edit',
+            compact('user', 'roles')
+        );
     }
 
     /**
@@ -69,7 +78,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:30',
+            'address' => 'required|max:50',
+            'phone_number' => 'required|max:15',
+            'username' => 'required|max:12',
+            'role_id' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->fill($validated);
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user->id]);
     }
 
     /**
@@ -80,6 +101,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+         User::destroy($id);
+         return redirect()->route('users.index');
     }
 }

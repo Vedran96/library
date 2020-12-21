@@ -24,7 +24,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|unique:authors|max:20',
+            'last_name' => 'required|unique:authors|max:20',
+            
+
+        ]);
+        $author = Author::create($validated);
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -58,7 +65,8 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $author = Author::findOrFail($id);
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -70,7 +78,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+        $validated = $request->validate([
+            'first_name' => 'required|unique:authors|max:20',
+            'last_name' => 'required|unique:authors|max:20',
+        ]);
+
+        $author = Author::findOrFail($id);
+        $author->fill($validated);
+        $author->save();
+
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -81,6 +99,7 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Author::destroy($id);
+        return redirect()->route('authors.index');
     }
 }
