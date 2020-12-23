@@ -16,7 +16,7 @@ class RegisteredUserController extends Controller
     
     public function create()
     {
-        $users = User::pluck('name','address','phone_number','username','id');
+        $users = User::pluck('name', 'id');
         return view('auth.register', compact('users'));
     }
 
@@ -25,9 +25,9 @@ class RegisteredUserController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|max:255',
-            'address' => 'required|email|max:255',
+            'address' => 'required|max:255',
             'phone_number' => 'required|min:12',
-            'username' => 'required|username|min:5',
+            'username' => 'required|min:5',
             'password' => 'required|min:7|confirmed',
         ]);
 

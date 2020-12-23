@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+
 class UserController extends Controller
 {
     /**
@@ -26,12 +28,7 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -50,8 +47,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $users=User::with(['role'])->findOrFail($id);
-        return view('users.show', compact('user'));
+        $user = User::with(['role'])
+        ->findOrFail($id);
+
+    return view('users.show', compact('user'));
     }
 
     /**

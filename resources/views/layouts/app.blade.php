@@ -1,3 +1,8 @@
+@php
+
+$currentUser = \Auth::user();
+
+@endphp
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,6 +48,7 @@
       
       </li>
     </ul>
+    
     @auth
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -59,9 +65,7 @@
             </li>
         </ul>
         @endauth
-
-        
-    </div>
+        </div>
     </nav>
 
     <div class="container">
@@ -86,8 +90,20 @@
             left: 0;
             bottom: 0;
             height: 8vh;
+            z-index: 100;
         }
     </style>
+
+    <script>
+        /* temporarily here */
+        function areYouSure(ev) {
+            if(confirm('Are you sure you?')){
+                return true;
+            }
+            ev.preventDefault();
+            return false;
+        }
+    </script>
     <footer class="bg-light w-100 text-center position-fixed pt-3">
         <small>Powered by <a href="https://www.google.com/search?q=zapravo prevara" target="_blank">Nije prevara d.o.o.</a></small>
     </footer>
@@ -97,10 +113,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
 </html>
-  
-
-
-
-
-
-    

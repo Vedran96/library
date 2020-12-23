@@ -12,7 +12,7 @@
         
         <div class="form-group">
             <label for="title">Title </label>
-            <input value="{{ $books->title }}" name="title" type="text" class="form-control" id="title">
+            <input value="{{ $book->title }}" name="title" type="text" class="form-control" id="title">
             @if ($errors->has('title'))
                 <span class="text-danger">{{ $errors->first('title') }}</span>
             @endif
@@ -21,7 +21,7 @@
         
         <div class="form-group">
             <label for="description">Description</label>
-            <input value="{{ $books->description }}" name="description" type="text" class="form-control" id="description">
+            <input value="{{ $book->description }}" name="description" type="text" class="form-control" id="description">
             @if ($errors->has('description'))
                 <span class="text-danger">{{ $errors->first('description') }}</span>
             @endif
@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <label for="date_publication">Date publication</label>
-            <input value="{{ $books->date_publication }}" name="date_publication" type="text" class="form-control" id="date_publication">
+            <input value="{{ $book->date_publication }}" name="date_publication" type="text" class="form-control" id="date_publication">
             @if ($errors->has('date_publication'))
                 <span class="text-danger">{{ $errors->first('date_publication') }}</span>
             @endif

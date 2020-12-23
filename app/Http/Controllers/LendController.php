@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lend;
+use App\Models\User;
+use App\Models\Book;
 class LendController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class LendController extends Controller
      */
     public function index()
     {
-        $lends=Lend::with(['book','user'])->paginate();
+        $lends=Lend::paginate();
         return view('lends.index', compact('lends'));
     }   
 
@@ -36,8 +38,8 @@ class LendController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'date_from' => 'required|unique:lends|max:10',
-            'date_to' => 'required|unique:lends|max:10',
+            'date_from' => 'required|unique:lends|max:30',
+            'date_to' => 'required|unique:lends|max:30',
             
         ]);
         $lend = Lend::create($validated);

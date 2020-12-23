@@ -12,7 +12,7 @@
         
         <div class="form-group">
             <label for="first_name">First name </label>
-            <input value="{{ $authors->first_name }}" name="first_name" type="text" class="form-control" id="first_name">
+            <input value="{{ $author->first_name }}" name="first_name" type="text" class="form-control" id="first_name">
             @if ($errors->has('first_name'))
                 <span class="text-danger">{{ $errors->first('first_name') }}</span>
             @endif
@@ -21,7 +21,7 @@
         
         <div class="form-group">
             <label for="last_name">Last name</label>
-            <input value="{{ $authors->last_name}}" name="last_name" type="text" class="form-control" id="last_name">
+            <input value="{{ $author->last_name}}" name="last_name" type="text" class="form-control" id="last_name">
             @if ($errors->has('last_name'))
                 <span class="text-danger">{{ $errors->first('last_name') }}</span>
             @endif

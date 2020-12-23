@@ -20,17 +20,14 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request)
     {
         $formData = $request->validate([
-            'name' => 'required|max:255',
-            'address' => 'required|email|max:255',
-            'phone_number' => 'required|min:12',
-            'username' => 'required|username|min:5',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
         /* pokusaj napraviti prijavu, vrati error ako je login fail */
         if(!Auth::attempt($formData)) {
             throw ValidationException::withMessages([
-                'Username' => __('auth.failed')
+                'username' => __('auth.failed')
             ]);
         }
 
