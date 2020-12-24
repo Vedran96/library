@@ -44,7 +44,7 @@
         
         <div class="form-group">
             <label for="role">Role</label>
-            {{ Form::select('role_id', $roles, $user->role_id, ['class' => 'form-control', 'id' => 'role_name']) }}
+            {{ Form::select('role_id', $roles, $user->role_id, ['class' => 'form-control', 'id' => 'role']) }}
         </div>
 
         <div class="mt-4">

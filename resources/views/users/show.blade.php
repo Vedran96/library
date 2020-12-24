@@ -30,6 +30,6 @@ $loggedInUser = \Auth::user();
     </div>
 
 
-<a href="{{ url()->previous() }}" class="btn btn-outline-primary">Back</a>
+
 </div>
 @endsection

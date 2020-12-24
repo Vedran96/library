@@ -17,6 +17,8 @@
   <td>{{ $review->id}}</td>
   <td>{{ $review->user_comment}}</td>
   <td>{{ $review->user_rating}}</td>
+
+
   <td>
   <a class="btn btn-outline-primary" href="{{ route('reviews.show', ['review' => $review->id]) }}">Details</a>
   <a class="btn btn-outline-primary" href="{{ route('reviews.edit', ['review' => $review->id]) }}">Edit</a>

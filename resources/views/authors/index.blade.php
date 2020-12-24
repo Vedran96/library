@@ -2,6 +2,12 @@
 
 @section('content')
 <a href="{{ route ('authors.create') }}" class="btn btn-primary mt-4">Add</a>
+
+<!-- Search form -->
+<form class="form-inline float-right mt-5" method="GET" action="{{ route('authors.index') }}">
+    <input class="form-control" type="text" placeholder="Search" name="search">
+  </form>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,4 +33,8 @@
 @endforeach
   </tbody>
 </table>
+
+<div class="d-flex justify-content-center">
+    {{ $authors->links() }}
+  </div>
 @endsection

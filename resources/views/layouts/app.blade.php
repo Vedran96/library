@@ -18,7 +18,7 @@ $currentUser = \Auth::user();
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">library</a>
+  <a class="navbar-brand" href="{{ route('home') }}">library</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -53,7 +53,7 @@ $currentUser = \Auth::user();
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown">
-                Welcome {{ $currentUser->name }}<small> ({{ $currentUser->role->name }})</small>
+                Welcome {{ $currentUser->name }}<small> ({{ $currentUser->role->role_name }})</small>
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{ route('users.show', ['user' => $currentUser->id]) }}">My profile</a>
