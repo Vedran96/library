@@ -87,8 +87,8 @@ class LendController extends Controller
         $validated = $request->validate([
             'book_id' => 'required',
             'user_id' => 'required',
-            'user_comment' => 'required|unique:lends|max:10',
-            'user_rating' => 'required|unique:lends|max:10'
+            'date_from' => 'required|unique:lends|max:25',
+            'date_to' => 'required|unique:lends|max:25'
             
         ]);
 

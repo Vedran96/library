@@ -16,9 +16,9 @@ class BookSeeder extends Seeder
     public function run()
     {
         DB::table('books')->insert([
-            'title' => Str::random(10),
-            'description' => Str::random(10),
-            'date_publication' => Carbon::now()->subYears(rand(1, 18))
+            'title' => 'Knjiga',
+            'description' => 'Nova knjiga',
+            'date_publication' => '2011-12-15'
             
             
         ]);

@@ -18,8 +18,8 @@ class LendSeeder extends Seeder
         DB::table('lends')->insert([
             'book_id' => 1,
             'user_id' => 1,
-            'date_from' => Carbon::now()->subYears(rand(1, 18)),
-            'date_to' => Carbon::now()->subYears(rand(1, 18))
+            'date_from' => '2020-12-24',
+            'date_to' => '2020-12-25'
             
             ]);
     }

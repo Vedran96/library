@@ -16,8 +16,8 @@ class ReviewSeeder extends Seeder
     public function run()
     {
         DB::table('reviews')->insert([
-            'user_comment' => Str::random(10),
-            'user_rating' => rand(1, 5),
+            'user_comment' => 'odlicno',
+            'user_rating' => 5,
             'book_id' => 1,
             'user_id' => 1
             

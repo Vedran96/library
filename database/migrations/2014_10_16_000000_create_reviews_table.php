@@ -15,10 +15,10 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('user_comment');
-            $table->float('user_rating');
             $table->foreignId('book_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->string('user_comment');
+            $table->float('user_rating');
             $table->timestamps();
         });
     }
