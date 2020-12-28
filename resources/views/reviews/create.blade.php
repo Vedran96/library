@@ -25,7 +25,15 @@
                 <span class="text-danger">{{ $errors->first('user_rating') }}</span>
             @endif
         </div>
-        
+
+        <div class="form-group">
+            <label for="book">Book</label>
+            {{ Form::select('book_id', $books, null, ['class' => 'form-control', 'id' => 'review']) }}
+        </div>
+        <div class="form-group">
+            <label for="user">User</label>
+            {{ Form::select('user_id', $users, null, ['class' => 'form-control', 'id' => 'review']) }}
+        </div>
         <button type="submit" class="btn btn-primary float-right">Save</button>
         <a href="{{ route('reviews.index') }}" class="btn btn-link">Cancel</a>
     </form>

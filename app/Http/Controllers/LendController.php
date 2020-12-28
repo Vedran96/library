@@ -26,7 +26,9 @@ class LendController extends Controller
      */
     public function create()
     {
-        return view('lends.create');
+        $books = Book::pluck('title','description','date_publication', 'id');
+        $users = User::pluck('name', 'id');
+        return view('lends.create', compact('books','users'));
     }
 
     /**
@@ -54,7 +56,7 @@ class LendController extends Controller
      */
     public function show($id)
     {
-        $lends=Lend::with(['book','user'])->findOrFail($id);
+        $lend=Lend::with(['book','user'])->findOrFail($id);
         return view('lends.show', compact('lend'));
     }
 

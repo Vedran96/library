@@ -11,7 +11,9 @@ class Review extends Model
     use HasFactory;
     protected $fillable = [
         'user_comment',
-        'user_rating'
+        'user_rating',
+        
+        
         
     ];
     public function users() {return $this->hasMany(User::class);}

@@ -27,6 +27,15 @@
             @endif
         </div>
 
+        <div class="form-group">
+            <label for="book">Book</label>
+            {{ Form::select('book_id', $books, $lend->book_id, ['class' => 'form-control', 'id' => 'book']) }}
+        </div>
+        <div class="form-group">
+            <label for="user">User</label>
+            {{ Form::select('user_id', $users, $lend->user_id, ['class' => 'form-control', 'id' => 'user']) }}
+        </div>
+
         <button type="submit" class="btn btn-primary float-right">Save</button>
         <a href="{{ route('lends.index') }}" class="btn btn-link">Cancel</a>
     </form>

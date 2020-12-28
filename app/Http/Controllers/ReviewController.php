@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
+use App\Models\Book;
 class ReviewController extends Controller
 {
     /**
@@ -24,7 +26,9 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('reviews.create');
+        $books = Book::pluck('title','description','date_publication', 'id');
+        $users = User::pluck('name', 'id');
+        return view('reviews.create', compact('books','users'));
     }
 
     /**
@@ -84,12 +88,15 @@ class ReviewController extends Controller
             'user_rating' => 'required|max:2',
            
         ]);
-
+        $books = Book::pluck('title','description','date_publication' ,'id');
+        $users = User::pluck('name','address','phone_number','username','id');
         $review = Review::findOrFail($id);
         $review->fill($validated);
         $review->save();
 
-        return view('reviews.show', compact('review'));
+        return view('review.edit',
+            compact('books','users', 'review')
+        );
     }
 
     /**
