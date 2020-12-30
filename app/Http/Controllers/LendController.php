@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Lend;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Review;
+
 class LendController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class LendController extends Controller
      */
     public function index()
     {
-        $lends=Lend::paginate();
+        $lends=Lend::with(['book','user'])->paginate();
         return view('lends.index', compact('lends'));
     }   
 

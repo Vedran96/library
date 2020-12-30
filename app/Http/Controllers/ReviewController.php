@@ -15,7 +15,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews=Review::paginate();
+        $reviews=Review::with(['book','user'])->paginate();
         return view('reviews.index', compact('reviews'));
     }
 
@@ -55,7 +55,8 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $reviews=Review::findOrFail($id);
+        $reviews=Review::with(['book','user'])
+        ->findOrFail($id);
         return view('reviews.show', compact('review'));
     }
 
@@ -68,8 +69,11 @@ class ReviewController extends Controller
     public function edit($id)
     {
         $review = Review::findOrFail($id);
-        
-        return view('reviews.edit', compact('review'));
+        $books = Book::pluck('title','description','date_publication', 'id');
+        $users = User::pluck('name', 'id');
+        return view('reviews.edit',
+        compact('review', 'books','users')
+        );
          
         
     }
@@ -86,17 +90,16 @@ class ReviewController extends Controller
         $validated = $request->validate([
             'user_comment' => 'required|max:50',
             'user_rating' => 'required|max:2',
+            'book_id' => 'required',
+            'user_id' => 'required'
            
         ]);
-        $books = Book::pluck('title','description','date_publication' ,'id');
-        $users = User::pluck('name','address','phone_number','username','id');
+        
         $review = Review::findOrFail($id);
         $review->fill($validated);
         $review->save();
 
-        return view('review.edit',
-            compact('books','users', 'review')
-        );
+        return redirect()->route('reviews.show', ['review' => $review->id]);
     }
 
     /**

@@ -10,6 +10,7 @@
       <th scope="col">Book title</th>
       <th scope="col">Book description</th>
       <th scope="col">Book publication</th>
+      
       <th>Actions</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
   <td>{{ $book->title}}</td>
   <td>{{ $book->description}}</td>
   <td>{{ $book->date_publication}}</td>
+  
   <td>
   <a class="btn btn-outline-primary" href="{{ route('books.show', ['book' => $book->id]) }}">Details</a>
   <a class="btn btn-outline-primary" href="{{ route('books.edit', ['book' => $book->id]) }}">Edit</a>

@@ -8,6 +8,7 @@
       <th scope="col">Id</th>
       <th scope="col">date_from</th>
       <th scope="col">date_to</th>
+      <th scope="col">Name</th>
       <th>Actions</th>
     
     </tr>
@@ -18,6 +19,7 @@
   <td>{{ $lend->id}}</td>
   <td>{{ $lend->date_from}}</td>
   <td>{{ $lend->date_to}}</td>
+  <td>{{ $lend->user->name}}</td>
   <td>
   <a class="btn btn-outline-primary" href="{{ route('lends.show', ['lend' => $lend->id]) }}">Details</a>
   <a class="btn btn-outline-primary" href="{{ route('lends.edit', ['lend' => $lend->id]) }}">Edit</a>

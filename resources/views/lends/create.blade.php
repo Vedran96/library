@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="user">User</label>
-            {{ Form::select('user_id', $books, null, ['class' => 'form-control', 'id' => 'lend']) }}
+            {{ Form::select('user_id', $users, null, ['class' => 'form-control', 'id' => 'lend']) }}
         </div>
         
         <button type="submit" class="btn btn-primary float-right">Save</button>

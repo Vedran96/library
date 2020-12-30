@@ -8,6 +8,8 @@
       <th scope="col">Id</th>
       <th scope="col">user comment</th>
       <th scope="col">user rating</th>
+      <th scope="col">Name</th>
+     
       <th>Actions</th>
     </tr>
   </thead>
@@ -17,7 +19,9 @@
   <td>{{ $review->id}}</td>
   <td>{{ $review->user_comment}}</td>
   <td>{{ $review->user_rating}}</td>
-
+  <td>{{ $review->user->name}}</td>
+  
+  
 
   <td>
   <a class="btn btn-outline-primary" href="{{ route('reviews.show', ['review' => $review->id]) }}">Details</a>
