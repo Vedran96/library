@@ -12,5 +12,6 @@ class Book extends Model
         'title',
         'description',
         'date_publication'
+        
     ];
 }

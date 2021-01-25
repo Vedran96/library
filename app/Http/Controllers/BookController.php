@@ -40,7 +40,7 @@ class BookController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:books|max:50',
             'description' => 'required|unique:books|max:50',
-            'date_publication' => 'required|unique:books|max:10',
+            'date_publication' => 'required|unique:books|max:20',
 
         ]);
         $book = Book::create($validated);

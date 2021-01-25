@@ -72,7 +72,7 @@ class LendController extends Controller
     {
        
         $books = Book::pluck('title','description','date_publication' ,'id');
-        $users = User::pluck('name','address','phone_number','username','id');
+        $users = User::pluck('name','id');
         $lend = Lend::findOrFail($id);
         return view('lends.edit',
             compact('books', 'users', 'lend')
@@ -89,18 +89,17 @@ class LendController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'date_from' => 'required|unique:lends|max:40',
+            'date_to' => 'required|unique:lends|max:40',
             'book_id' => 'required',
             'user_id' => 'required',
-            'date_from' => 'required|unique:lends|max:25',
-            'date_to' => 'required|unique:lends|max:25'
-            
         ]);
 
         $lend = Lend::findOrFail($id);
         $lend->fill($validated);
         $lend->save();
 
-        return view('lends.show', compact('lend'));
+        return redirect()->route('lends.show', ['lend' => $lend->id]);
     }
 
     /**

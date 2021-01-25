@@ -20,6 +20,11 @@ class CreateLendsTable extends Migration
             $table->dateTime('date_from');
             $table->dateTime('date_to');
             $table->timestamps();
+
+            $table->foreignId('users_id','book_id')
+            ->nullable()
+            ->constrained()
+            ->onDelete('set null');
         });
     }
 

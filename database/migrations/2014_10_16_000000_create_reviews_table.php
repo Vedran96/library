@@ -20,6 +20,11 @@ class CreateReviewsTable extends Migration
             $table->string('user_comment');
             $table->float('user_rating');
             $table->timestamps();
+
+            $table->foreignId('users_id','book_id')
+            ->nullable()
+            ->constrained()
+            ->onDelete('set null');
         });
     }
 
